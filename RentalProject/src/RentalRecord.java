@@ -23,11 +23,22 @@ public class RentalRecord {
     	return vehicle;
     }
     
+    /* Getters added to obtain necessary information for re-constructing a `RentalRecord' object from a text file. */
+    public String getRecordType() {
+    	return recordType;
+    }
+    
+    public LocalDate getRecordDate() {
+    	return recordDate;
+    }
+    
+    public double getTotalAmount() {
+    	return totalAmount;
+    }
+    
+    /* The previous implementation of `toString()' was fine, but I felt like having two places of precision after the decimal point looked better. */
     @Override
     public String toString() {
-        return recordType + " | Plate: " + vehicle.getLicensePlate() + 
-               " | Customer: " + customer.getCustomerName() + 
-               " | Date: " + recordDate + 
-               " | Amount: $" + totalAmount;
+        return String.format("%s | Plate: %s | Customer: %s | Date: %s | Amount: $%.2f", recordType, vehicle.getLicensePlate(), customer.getCustomerName(), recordDate, totalAmount);
     }
 }

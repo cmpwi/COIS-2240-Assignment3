@@ -31,4 +31,9 @@ public class RentalHistory {
         }
         return result;
     }
+    
+    /* Convenience method to return the last rental record in the array. */
+    public RentalRecord getLast() {
+    	return getRentalHistory().get((getRentalHistory().size() - 1));
+    }
 }
