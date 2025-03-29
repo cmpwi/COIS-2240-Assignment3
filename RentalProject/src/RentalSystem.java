@@ -3,9 +3,23 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class RentalSystem {
+	private static RentalSystem rentalSystemInstance = null;
+	
     private List<Vehicle> vehicles = new ArrayList<>();
     private List<Customer> customers = new ArrayList<>();
     private RentalHistory rentalHistory = new RentalHistory();
+    
+    private RentalSystem()
+    {
+    }
+    
+    public static synchronized RentalSystem getInstance()
+    {
+    	if (rentalSystemInstance == null)
+    		rentalSystemInstance = new RentalSystem();
+    	
+    	return rentalSystemInstance;
+    }
 
     public void addVehicle(Vehicle vehicle) {
         vehicles.add(vehicle);
