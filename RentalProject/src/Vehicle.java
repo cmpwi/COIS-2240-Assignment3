@@ -38,6 +38,8 @@ public abstract class Vehicle {
     }
 
     public void setLicensePlate(String plate) {
+    	if (!isValidPlate(plate))
+    		throw new IllegalArgumentException();
         this.licensePlate = plate == null ? null : plate.toUpperCase();
     }
 
