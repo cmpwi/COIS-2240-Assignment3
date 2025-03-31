@@ -31,6 +31,11 @@ public abstract class Vehicle {
     {
     	return aString != null ? aString.substring(0, 1).toUpperCase() + aString.substring(1).toLowerCase() : "";
     }
+    
+    private boolean isValidPlate(String plate)
+    {
+    	return (plate != null && !plate.isEmpty() && plate.matches("[A-Za-z]{3}[0-9]{3}")) ? true : false;
+    }
 
     public void setLicensePlate(String plate) {
         this.licensePlate = plate == null ? null : plate.toUpperCase();
