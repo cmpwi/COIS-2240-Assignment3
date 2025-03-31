@@ -45,7 +45,12 @@ public class VehicleRentalApp {
 		            }
                     
                     if (vehicle != null) {
-	                    vehicle.setLicensePlate(plate);
+                    	try {
+                    		vehicle.setLicensePlate(plate);
+                    	} catch (IllegalArgumentException e) {
+                    		System.out.printf("\nInvalid plate! Format should be three numbers, followed by three letters.\n");
+                    		break;
+                    	}
 	                    if (rentalSystem.addVehicle(vehicle))
 	                    	System.out.println("Vehicle added.");
 	                    else

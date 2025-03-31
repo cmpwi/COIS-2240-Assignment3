@@ -2,3 +2,4 @@ Car Toyota Corolla 2019 5 AAA111
 Car Honda Civic 2021 5 BBB222
 Car Ford Focus 2024 5 CCC333
 Car Some Brand 2024 4 AAA132
+Car Other Brand 2011 2 AWQ543
