@@ -6,17 +6,17 @@ public abstract class Vehicle {
     private VehicleStatus status;
 
     public enum VehicleStatus { AVAILABLE, RESERVED, RENTED, MAINTENANCE, OUTOFSERVICE }
-
+    
     public Vehicle(String make, String model, int year) {
     	if (make == null || make.isEmpty())
     		this.make = null;
     	else
-    		this.make = make.substring(0, 1).toUpperCase() + make.substring(1).toLowerCase();
+    		this.make = capitalize(make);
     	
     	if (model == null || model.isEmpty())
     		this.model = null;
     	else
-    		this.model = model.substring(0, 1).toUpperCase() + model.substring(1).toLowerCase();
+    		this.model = capitalize(model);
     	
         this.year = year;
         this.status = VehicleStatus.AVAILABLE;
@@ -25,6 +25,11 @@ public abstract class Vehicle {
 
     public Vehicle() {
         this(null, null, 0);
+    }
+    
+    private String capitalize(String aString)
+    {
+    	return aString != null ? aString.substring(0, 1).toUpperCase() + aString.substring(1).toLowerCase() : "";
     }
 
     public void setLicensePlate(String plate) {

@@ -127,7 +127,7 @@ public class RentalSystem {
     			Customer addedCustomer = null;
     			String checkedCustomerName = "";
 
-    			/* Iterate through the entirety of the customer objects. We compare their customer ID's and names to what we find in the rental records. */
+    			/* Iterate through the entirety of the customer objects. We compare their customer IDs and names to what we find in the rental records. */
     			for (int i = 0; i < customers.size(); ++i) {
 
     				/* Construct the name from the rental record. */
