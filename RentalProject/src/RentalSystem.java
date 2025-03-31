@@ -42,12 +42,13 @@ public class RentalSystem {
     	try {
     		vehicleBufferedReader = new BufferedReader(new FileReader(VEHICLE_STORAGE_FILE));
     		String vehicleLine = vehicleBufferedReader.readLine();
-
+    		
     		/* Until we reach the end of the file... */
     		while (vehicleLine != null) {
     			/* Split the current line over whitespace boundaries. */
     			String[] vehicleSplitLine = vehicleLine.split("\\s+");
-    			if (vehicleSplitLine[0].contentEquals("Car")) {		/* If we're a Car, make a car object. */
+    			
+    			if (vehicleSplitLine[0].contentEquals("Car")) {				/* If we're a Car, make a car object. */
     				Car newCar = new Car(vehicleSplitLine[1], vehicleSplitLine[2], Integer.parseInt(vehicleSplitLine[3]), Integer.parseInt(vehicleSplitLine[4]));
     				newCar.setLicensePlate(vehicleSplitLine[5]);
     				vehicles.add(newCar);
@@ -185,11 +186,11 @@ public class RentalSystem {
     				(aVehicle.getClass().equals(Truck.class) ? "Truck" : "") +
     				" " + aVehicle.getMake() + " " +
     				aVehicle.getModel() + " " +
-    				Integer.toString(aVehicle.getYear()) + " " +
+    				Integer.toString(aVehicle.getYear()) +
     				(aVehicle.getClass().equals(Car.class) ? " " + Integer.toString(((Car)aVehicle).getNumSeats()) : "") +
     				(aVehicle.getClass().equals(Motorcycle.class) ? " " + Boolean.toString(((Motorcycle)aVehicle).hasSidecar()) : "") +
     				(aVehicle.getClass().equals(Truck.class) ? " " + Double.toString(((Truck)aVehicle).getCargoCapacity()) : "") +
-    				aVehicle.getLicensePlate() + "\n");
+    				" " + aVehicle.getLicensePlate() + "\n");
     	} catch (IOException e) {
     		System.out.printf("Writing Vehicle data to file failed!\n");
     	} finally {
@@ -201,9 +202,13 @@ public class RentalSystem {
     	}
     }
 
-    public void addVehicle(Vehicle vehicle) {
+    public boolean addVehicle(Vehicle vehicle) {
+    	if (findVehicleByPlate(vehicle.getLicensePlate()) != null)
+    		return false;
+
         vehicles.add(vehicle);
         this.saveVehicle(vehicle);
+        return true;
     }
     
     private void saveCustomer(Customer aCustomer)
@@ -225,9 +230,13 @@ public class RentalSystem {
     	}
     }
 
-    public void addCustomer(Customer customer) {
+    public boolean addCustomer(Customer customer) {
+    	if (findCustomerById(Integer.toString(customer.getCustomerId())) != null)
+    		return false;
+
         customers.add(customer);
         this.saveCustomer(customer);
+        return true;
     }
     
     private void saveRecord(RentalRecord aRecord)

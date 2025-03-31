@@ -46,8 +46,10 @@ public class VehicleRentalApp {
                     
                     if (vehicle != null) {
 	                    vehicle.setLicensePlate(plate);
-	                    rentalSystem.addVehicle(vehicle);
-	                    System.out.println("Vehicle added.");
+	                    if (rentalSystem.addVehicle(vehicle))
+	                    	System.out.println("Vehicle added.");
+	                    else
+	                    	System.out.printf("\nVehicle not added. License plates must be unique!\n");
                     }
                     else {
 	                    System.out.println("Vehicle not added.");
@@ -60,8 +62,10 @@ public class VehicleRentalApp {
                     System.out.print("Enter name: ");
                     String cname = scanner.nextLine();
 
-                    rentalSystem.addCustomer(new Customer(Integer.parseInt(cid), cname));
-                    System.out.println("Customer added.");
+                    if (rentalSystem.addCustomer(new Customer(Integer.parseInt(cid), cname)))                    	
+                    	System.out.println("Customer added.");
+                    else
+                    	System.out.printf("\nCustomer not added. IDs must be unique!\n");
                     break;
                     
                 case 3:

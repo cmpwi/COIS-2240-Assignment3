@@ -1,3 +1,1 @@
-Car Toyota Corolla 1999 5 ASDF-1234
-Truck Hino 300 1989 500.22 DFGH-1234
-Motorcycle Suzuki Sport 2023 false SFGD-7364
+Car Tesla S 2024 5 ASDF-1234
