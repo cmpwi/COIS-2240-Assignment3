@@ -1,0 +1,234 @@
+Reading Vehicle data from file failed!
+Reading Customer data from file failed!
+Reading RentalHistory data from file failed!
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+2
+Enter customer ID: 001
+Enter name: George
+Customer added.
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+2
+Enter customer ID: 002
+Enter name: Anne
+Customer added.
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+1
+  1: Car
+  2: Motorcycle
+  3: Truck
+1
+Enter license plate: AAA111
+Enter make: Toyota
+Enter model: Corolla
+Enter year: 2019
+Enter number of seats: 5
+Vehicle added.
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+1
+  1: Car
+  2: Motorcycle
+  3: Truck
+1
+Enter license plate: BBB222
+Enter make: Honda
+Enter model: Civic
+Enter year: 2021
+Enter number of seats: 5
+Vehicle added.
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+1
+  1: Car
+  2: Motorcycle
+  3: Truck
+1
+Enter license plate: CCC333
+Enter make: Ford
+Enter model: Focus
+Enter year: 2024
+Enter number of seats: 5
+Vehicle added.
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+3
+List of Available Vehicles:
+|     Type         |	Plate	|	Make	|	Model	|	Year	|
+---------------------------------------------------------------------------------
+|     Car          |	AAA111	|	Toyota	|	Corolla	|	2019	|	
+|     Car          |	BBB222	|	Honda	|	Civic	|	2021	|	
+|     Car          |	CCC333	|	Ford	|	Focus	|	2024	|	
+
+Enter license plate: AAA111
+Registered Customers:
+  Customer ID: 1 | Name: George
+  Customer ID: 2 | Name: Anne
+Enter customer ID: 001
+Enter rental amount: 225.34
+Vehicle rented to George
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+3
+List of Available Vehicles:
+|     Type         |	Plate	|	Make	|	Model	|	Year	|
+---------------------------------------------------------------------------------
+|     Car          |	BBB222	|	Honda	|	Civic	|	2021	|	
+|     Car          |	CCC333	|	Ford	|	Focus	|	2024	|	
+
+Enter license plate: CCC333
+Registered Customers:
+  Customer ID: 1 | Name: George
+  Customer ID: 2 | Name: Anne
+Enter customer ID: 001
+Enter rental amount: 132.98
+Vehicle rented to George
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+3
+List of Available Vehicles:
+|     Type         |	Plate	|	Make	|	Model	|	Year	|
+---------------------------------------------------------------------------------
+|     Car          |	BBB222	|	Honda	|	Civic	|	2021	|	
+
+Enter license plate: BBB222
+Registered Customers:
+  Customer ID: 1 | Name: George
+  Customer ID: 2 | Name: Anne
+Enter customer ID: 002
+Enter rental amount: 145.21
+Vehicle rented to Anne
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+3
+List of Available Vehicles:
+|     Type         |	Plate	|	Make	|	Model	|	Year	|
+---------------------------------------------------------------------------------
+
+Enter license plate: CCC333
+Registered Customers:
+  Customer ID: 1 | Name: George
+  Customer ID: 2 | Name: Anne
+Enter customer ID: 002
+Enter rental amount: 189.32
+Vehicle is not available for renting.
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+4
+List of Vehicles:
+|     Type         |	Plate	|	Make	|	Model	|	Year	|
+---------------------------------------------------------------------------------
+|     Car          |	AAA111	|	Toyota	|	Corolla	|	2019	|	
+|     Car          |	BBB222	|	Honda	|	Civic	|	2021	|	
+|     Car          |	CCC333	|	Ford	|	Focus	|	2024	|	
+
+Enter license plate: CCC333
+Registered Customers:
+  Customer ID: 1 | Name: George
+  Customer ID: 2 | Name: Anne
+Enter customer ID: 001
+Enter return fees: 10.12
+Vehicle returned by George
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+3
+List of Available Vehicles:
+|     Type         |	Plate	|	Make	|	Model	|	Year	|
+---------------------------------------------------------------------------------
+|     Car          |	CCC333	|	Ford	|	Focus	|	2024	|	
+
+Enter license plate: CCC333
+Registered Customers:
+  Customer ID: 1 | Name: George
+  Customer ID: 2 | Name: Anne
+Enter customer ID: 002
+Enter rental amount: 198.21
+Vehicle rented to Anne
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+5
+|     Type         |	Plate	|	Make	|	Model	|	Year	|
+---------------------------------------------------------------------------------
+
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
