@@ -3,3 +3,4 @@ Car Honda Civic 2021 5 BBB222
 Car Ford Focus 2024 5 CCC333
 Car Some Brand 2024 4 AAA132
 Car Other Brand 2011 2 AWQ543
+Car Make1 Model1 2022 2 AAA100
