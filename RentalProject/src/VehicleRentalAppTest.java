@@ -1,8 +1,10 @@
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import org.junit.jupiter.api.Test;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Modifier;
 
 class VehicleRentalAppTest {
 
@@ -90,5 +92,17 @@ class VehicleRentalAppTest {
 		
 		/* Returning again should not work. */
 		assertFalse(rentalSystem.returnVehicle(testVehicle1, testCustomer1, LocalDate.now(), 0));
+	}
+	
+	@Test
+	void testSingletonRentalSystem()
+	{
+		try {
+			Constructor<RentalSystem> rentalSystemConstructor = RentalSystem.class.getDeclaredConstructor();
+			assertEquals(rentalSystemConstructor.getModifiers(), Modifier.PRIVATE);
+			assertTrue(RentalSystem.getInstance() != null);
+	    } catch (ReflectiveOperationException e) {
+	    	System.out.printf("Cannot get default constructor for the `RentalSystem' class!");
+	    }
 	}
 }
