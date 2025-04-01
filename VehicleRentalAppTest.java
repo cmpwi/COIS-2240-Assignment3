@@ -8,6 +8,10 @@ import java.lang.reflect.Modifier;
 
 class VehicleRentalAppTest {
 
+	/* Test license plate validation with four test vehicles.
+	 * Each vehicle is tested for throwing an exception when a bad plate is given.
+	 * Valid plates should be assigned without throwing an exception, and their contents are checked once more.
+	 */
 	@Test
 	void testLicensePlateValidation()
 	{
@@ -35,26 +39,27 @@ class VehicleRentalAppTest {
 		assertTrue(exceptionTooManyNumbers.getMessage().equals("Plate is invalid!"));
 		assertTrue(exceptionTooFewNumbers.getMessage().equals("Plate is invalid!"));
 		
-		/* Test that valid license plates do not throw an assertion. Plates should also not be not equal to the given tested input. */
+		/* Test that valid license plates do not throw an assertion. Plates should also be equal to the given tested input. */
 		assertDoesNotThrow(() -> {
 			testVehicle1.setLicensePlate("AAA100");
 	    });
-		
 		assertTrue(testVehicle1.getLicensePlate().equals("AAA100"));
 		
 		assertDoesNotThrow(() -> {
 			testVehicle2.setLicensePlate("ABC567");
 	    });
-		
 		assertTrue(testVehicle2.getLicensePlate().equals("ABC567"));
 		
 		assertDoesNotThrow(() -> {
 			testVehicle3.setLicensePlate("ZZZ999");
 	    });
-		
 		assertTrue(testVehicle3.getLicensePlate().equals("ZZZ999"));
 	}
 
+	/* Test the renting and returning logic. Renting the vehicle twice should not work,
+	 * and returning the vehicle twice should not work. The customer and vehicle objects
+	 * are also tested before use for validity.
+	 */
 	@Test
 	void testRentAndReturnVehicle()
 	{
@@ -94,12 +99,15 @@ class VehicleRentalAppTest {
 		assertFalse(rentalSystem.returnVehicle(testVehicle1, testCustomer1, LocalDate.now(), 0));
 	}
 	
+	/* Test the `RentalSystem' class for adherence to the singleton design pattern. */
 	@Test
 	void testSingletonRentalSystem()
 	{
 		try {
+			/* Try getting the `RentalSystem''s class declared constructor, and verify that its only constructor is marked private. */
 			Constructor<RentalSystem> rentalSystemConstructor = RentalSystem.class.getDeclaredConstructor();
 			assertEquals(rentalSystemConstructor.getModifiers(), Modifier.PRIVATE);
+			/* Make sure that getting the class's single instance succeeds. */
 			assertTrue(RentalSystem.getInstance() != null);
 	    } catch (ReflectiveOperationException e) {
 	    	System.out.printf("Cannot get default constructor for the `RentalSystem' class!");
