@@ -32,11 +32,13 @@ public abstract class Vehicle {
     	return aString != null ? aString.substring(0, 1).toUpperCase() + aString.substring(1).toLowerCase() : "";
     }
     
+    /* Regex is wonderful. If the plate is not null, not empty, and the plate matches any three letters (insensitive of case) followed by any three numbers, then the plate is valid. */
     private boolean isValidPlate(String plate)
     {
     	return (plate != null && !plate.isEmpty() && plate.matches("[A-Za-z]{3}[0-9]{3}")) ? true : false;
     }
 
+    /* Use the above method to validate the given plate (throwing an exception if invalid), before assigning it to the current vehicle. */
     public void setLicensePlate(String plate) {
     	if (!isValidPlate(plate))
     		throw new IllegalArgumentException("Plate is invalid!");

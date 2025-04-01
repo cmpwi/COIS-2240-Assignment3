@@ -15,13 +15,14 @@ public class RentalSystem {
     private List<Customer> customers = new ArrayList<>();
     private RentalHistory rentalHistory = new RentalHistory();
     
-    private static String VEHICLE_STORAGE_FILE = "./vehicles.txt";
-    private static String CUSTOMER_STORAGE_FILE = "./customers.txt";
-    private static String RENTAL_RECORDS_STORAGE_FILE = "./rental_records.txt";
+    /* Defines the file names for storing vehicle, customer, and rental records. */
+    private static final String VEHICLE_STORAGE_FILE = "./vehicles.txt";
+    private static final String CUSTOMER_STORAGE_FILE = "./customers.txt";
+    private static final String RENTAL_RECORDS_STORAGE_FILE = "./rental_records.txt";
     
     private RentalSystem()
     {
-    	/* Load all data from files on disk when the `RentalSystem' starts up. */
+    	/* Load all data from files on disk when the `RentalSystem' is called upon. */
     	loadData();
     }
     
@@ -37,7 +38,7 @@ public class RentalSystem {
     /* Called by `RentalSystem' to load vehicle, customer, and rental record data from text files. */
     private void loadData()
     {
-    	/* Load Vehicle data into `vehicles' array. */
+    	/* Part 1: Load Vehicle data into `vehicles' array. */
     	BufferedReader vehicleBufferedReader = null;
     	try {
     		vehicleBufferedReader = new BufferedReader(new FileReader(VEHICLE_STORAGE_FILE));
@@ -48,17 +49,20 @@ public class RentalSystem {
     			/* Split the current line over whitespace boundaries. */
     			String[] vehicleSplitLine = vehicleLine.split("\\s+");
     			
-    			if (vehicleSplitLine[0].contentEquals("Car")) {				/* If we're a Car, make a car object. */
+    			/* If we're a Car, make a car object. */
+    			if (vehicleSplitLine[0].contentEquals("Car")) {
     				Car newCar = new Car(vehicleSplitLine[1], vehicleSplitLine[2], Integer.parseInt(vehicleSplitLine[3]), Integer.parseInt(vehicleSplitLine[4]));
     				newCar.setLicensePlate(vehicleSplitLine[5]);
     				vehicles.add(newCar);
     			}
-    			else if (vehicleSplitLine[0].contentEquals("Motorcycle")) {	/* If we're a Motorcycle, make a motorcycle object. */
+    			/* If we're a Motorcycle, make a motorcycle object. */
+    			else if (vehicleSplitLine[0].contentEquals("Motorcycle")) {
     				Motorcycle newMotorcycle = new Motorcycle(vehicleSplitLine[1], vehicleSplitLine[2], Integer.parseInt(vehicleSplitLine[3]), Boolean.parseBoolean(vehicleSplitLine[4]));
     				newMotorcycle.setLicensePlate(vehicleSplitLine[5]);
     				vehicles.add(newMotorcycle);
     			}
-    			else if (vehicleSplitLine[0].contentEquals("Truck")) {		/* If we're a Truck, make a truck object. */
+    			/* If we're a Truck, make a truck object. */
+    			else if (vehicleSplitLine[0].contentEquals("Truck")) {
     				Truck newTruck = new Truck(vehicleSplitLine[1], vehicleSplitLine[2], Integer.parseInt(vehicleSplitLine[3]), Double.parseDouble(vehicleSplitLine[4]));
     				newTruck.setLicensePlate(vehicleSplitLine[5]);
     				vehicles.add(newTruck);
@@ -73,7 +77,7 @@ public class RentalSystem {
     		System.out.printf("Reading Vehicle data from file failed!\n");
     	}
     	
-    	/* Load Customer data into `customers' array. */
+    	/* Part 2: Load Customer data into `customers' array. */
     	BufferedReader customerBufferedReader = null;
     	try {
     		customerBufferedReader = new BufferedReader(new FileReader(CUSTOMER_STORAGE_FILE));
@@ -84,14 +88,14 @@ public class RentalSystem {
     		while (customerLine != null) {
     			/* Split the current line over whitespace boundaries. */
     			String[] customerSplitLine = customerLine.split("\\s+");
-    			/* Construct the name from the customer record. */
+    			/* Construct the name from the customer record. This should be done just in case the customer's name is more than one word. */
     			for (int i = 1; i < customerSplitLine.length; ++i) {
     				if (i > 1)	/* If we have more than one word in the whole name, add a space in between. */
     					fullCustomerName = fullCustomerName.concat(" ");
     				fullCustomerName = fullCustomerName.concat(customerSplitLine[i]);
     			}
+    			/* Finally, add a new customer to the customers array. This assumes that the first word on each line is always the customer's ID. */
     			customers.add(new Customer(Integer.parseInt(customerSplitLine[0]), fullCustomerName));
-    			System.out.printf("DEBUG: %d %s\n", customers.get(customers.size() - 1).getCustomerId(), customers.get(customers.size() - 1).getCustomerName());
     			
     			/* Reset the full customer name for the next iteration. */
     			fullCustomerName = "";
@@ -105,7 +109,7 @@ public class RentalSystem {
     		System.out.printf("Reading Customer data from file failed!\n");
     	}
     	
-    	/* Load RentalHistory data into `rentalHistory' array. */
+    	/* Part 3: Load RentalHistory data into `rentalHistory' array. */
     	BufferedReader rhBufferedReader = null;
     	try {
     		rhBufferedReader = new BufferedReader(new FileReader(RENTAL_RECORDS_STORAGE_FILE));
@@ -148,7 +152,10 @@ public class RentalSystem {
     			}
 
     			/* Once we found our customer, make the new rental record and add it to the rental history. */
-    			rentalHistory.addRecord(new RentalRecord(addedVehicle, addedCustomer, LocalDate.parse(rhSplitLine[rhSplitLine.length - 3]), Double.parseDouble(rhSplitLine[rhSplitLine.length - 2]), rhSplitLine[rhSplitLine.length - 1]));
+    			rentalHistory.addRecord(new RentalRecord(addedVehicle, addedCustomer,
+    														LocalDate.parse(rhSplitLine[rhSplitLine.length - 3]),
+    														Double.parseDouble(rhSplitLine[rhSplitLine.length - 2]),
+    														rhSplitLine[rhSplitLine.length - 1]));
     			
     			/*
     			 * Since we now have (and assume) that our customer exists and is not null, we check the vehicle status from the rental records.
@@ -158,10 +165,8 @@ public class RentalSystem {
     			 */
     			if (rhSplitLine[rhSplitLine.length - 1].equals("RENT") && (addedVehicle.getStatus().compareTo(Vehicle.VehicleStatus.AVAILABLE) == 0)) {
     				addedVehicle.setStatus(Vehicle.VehicleStatus.RENTED);
-    				System.out.printf("DEBUG: Vehicle %s status set to RENTED.\n", addedVehicle.getLicensePlate());
     			} else if (rhSplitLine[rhSplitLine.length - 1].equals("RETURN") && (addedVehicle.getStatus().compareTo(Vehicle.VehicleStatus.RENTED) == 0)) {
     				addedVehicle.setStatus(Vehicle.VehicleStatus.AVAILABLE);
-    				System.out.printf("DEBUG: Vehicle %s status set to AVAILABLE.\n", addedVehicle.getLicensePlate());
     			}
     			
     			/* Advance to the next line in the file. */
@@ -203,6 +208,7 @@ public class RentalSystem {
     }
 
     public boolean addVehicle(Vehicle vehicle) {
+    	/* If we found an existing vehicle by its plate (which happens when this method does not return null), then the passed vehicle with its given license plate already exists. */
     	if (findVehicleByPlate(vehicle.getLicensePlate()) != null)
     		return false;
 
@@ -231,6 +237,7 @@ public class RentalSystem {
     }
 
     public boolean addCustomer(Customer customer) {
+    	/* If we found an existing customer by its customer ID (which happens when this method does not return null), then the passed customer already exists. */
     	if (findCustomerById(Integer.toString(customer.getCustomerId())) != null)
     		return false;
 

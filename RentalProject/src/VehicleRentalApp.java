@@ -45,6 +45,7 @@ public class VehicleRentalApp {
 		            }
                     
                     if (vehicle != null) {
+                    	/* Catch a potential exception thrown by `setLicensePlate' if the plate is bad. */
                     	try {
                     		vehicle.setLicensePlate(plate);
                     	} catch (IllegalArgumentException e) {
